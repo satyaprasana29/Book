@@ -31,6 +31,10 @@ namespace Book.Controllers
         {
             IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
             TempData["books"] = bookDetails;
+            return RedirectToAction("TempDataResult");
+        }
+        public ActionResult TempDataResult()
+        {
             return View();
         }
     }

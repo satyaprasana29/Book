@@ -5,32 +5,3 @@
 }
 
 <h2>TempDataCall</h2>
-<table border="1">
-    <tr>
-        <td>
-            BookName
-        </td>
-        <td>
-            AuthorName
-        </td>
-        <td>
-            BookId
-        </td>
-    </tr>
-    @foreach (Book.Data.BookDetails book in (IEnumerable<Book.Data.BookDetails>)TempData["books"])
-    {
-        <tr>
-            <td>
-                @book.bookName
-            </td>
-            <td>
-                @book.authorName
-            </td>
-            <td>
-                @book.bookId
-            </td>
-        </tr>
-    }
-</table>
-
-
