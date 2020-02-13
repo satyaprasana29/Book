@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Book.Data.BookDetails>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+<ul>
+    @foreach (Book.Data.BookDetails item in @Model)
+    {
+        <li>@item.bookName</li>
+    }
+</ul>
