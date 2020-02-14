@@ -17,5 +17,9 @@ namespace Book.Data
             this.authorName = authorName;
             this.bookId = bookId;
         }
+        public BookDetails()
+        {
+
+        }
     }
 }

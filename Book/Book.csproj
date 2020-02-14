@@ -133,6 +133,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Home\TempDataResult.cshtml" />
+    <Content Include="Views\Home\CreateView.cshtml" />
+    <Content Include="Views\Home\EditBook.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

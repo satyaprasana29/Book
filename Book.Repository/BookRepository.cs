@@ -22,5 +22,28 @@ namespace Book.Repository
         {
             return books;
         }
+        public static BookDetails FindBook(int id)
+        {
+            BookDetails book = new BookDetails();
+            foreach(BookDetails bookDetails in books)
+            {
+                if(bookDetails.bookId==id)
+                {
+                    return bookDetails;
+                }
+            }
+            return book;
+        }
+        public static void UpdateBook(int bookId, string bookName, string authorName)
+        {
+            BookDetails bookDetails = FindBook(bookId);
+            books.Remove(bookDetails);
+            books.Add(new BookDetails(bookName, authorName, bookId));
+        }
+        public static void DeleteBook(int bookId)
+        {
+            BookDetails bookDetails = FindBook(bookId);
+            books.Remove(bookDetails);
+        }
     }
 }

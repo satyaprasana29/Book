@@ -3,10 +3,41 @@
     ViewBag.Title = "Index";
 }
 <h2>Index</h2>
-
-<ul>
-    @foreach (Book.Data.BookDetails item in @Model)
+@Html.ActionLink("Add Books","Create")
+@if(TempData["Message"]!=null)
+{
+    @Html.Label((String)TempData["Message"])
+}
+<table border="1">
+    <tr>
+        <td>
+            BookName:
+        </td>
+        <td>
+            AuthorName
+        </td>
+        <td>
+            bookId
+        </td>
+    </tr>
+    @foreach (Book.Data.BookDetails book in @Model)
     {
-        <li>@item.bookName</li>
+<tr>
+    <td>
+        @book.bookName
+    </td>
+    <td>
+        @book.authorName
+    </td>
+    <td>
+        @book.bookId
+    </td>
+    <td>
+        @Html.ActionLink("Edit Book", "EditBook", new { id = book.bookId })
+    </td>
+    <td>
+        @Html.ActionLink("Delete Book", "DeleteBook", new { id = book.bookId })
+    </td>
+</tr>
     }
-</ul>
+</table>

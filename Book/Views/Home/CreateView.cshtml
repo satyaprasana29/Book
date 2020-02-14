@@ -1,0 +1,41 @@
+﻿@model Book.Data.BookDetails
+
+@{
+    ViewBag.Title = "CreateView";
+}
+
+<h2>Add New Books</h2>
+
+@using(Html.BeginForm("Create","Home",FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>BookId</td>
+            <td>@Html.EditorFor(model=>model.bookId)</td>
+        </tr>
+        <tr>
+            <td>
+                BookName
+            </td>
+            <td>
+                @Html.EditorFor(model=>model.bookName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                AuthorName
+            </td>
+            <td>
+                @Html.EditorFor(model=>model.authorName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" runat="server" />
+            </td>
+        </tr>
+    </table>
+}
+<div>
+    @Html.ActionLink("BackToHome","Index")
+</div>

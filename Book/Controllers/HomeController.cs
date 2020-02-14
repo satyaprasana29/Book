@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Book.Repository;
 using Book.Data;
@@ -15,27 +12,57 @@ namespace Book.Controllers
             IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
             return View(bookDetails);
         }
-        public ActionResult DataPassing()
+        //public ActionResult DataPassing()
+        //{
+        //    IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
+        //    ViewBag.Books = bookDetails;
+        //    return View(bookDetails);
+        //}
+        //public ActionResult Viewdata()
+        //{
+        //    IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
+        //    ViewData["book"] = bookDetails;
+        //    return View();
+        //}
+        //public ActionResult TempDataCall()
+        //{
+        //    IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
+        //    TempData["books"] = bookDetails;
+        //    return RedirectToAction("TempDataResult");
+        //}
+        //public ActionResult TempDataResult()
+        //{
+        //    return View();
+        //}
+        [HttpGet]
+        public ActionResult Create()
         {
-            IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
-            ViewBag.Books = bookDetails;
+            return View("CreateView");
+        }
+        [HttpPost]
+        public ActionResult Create(BookDetails book)
+        {
+            BookRepository.books.Add(book);
+            TempData["Message"] = "Added Successfully";
+            return RedirectToAction("Index");
+        }
+        public ActionResult EditBook(int id)
+        {
+            BookDetails bookDetails = BookRepository.FindBook(id);
             return View(bookDetails);
         }
-        public ActionResult Viewdata()
+        [HttpPost]
+        public ActionResult UpdateResult(BookDetails book)
         {
-            IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
-            ViewData["book"] = bookDetails;
-            return View();
+            BookRepository.UpdateBook(book.bookId, book.bookName, book.authorName);
+            TempData["Message"] = "Updated Successfully";
+            return RedirectToAction("Index");
         }
-        public ActionResult TempDataCall()
+        public ActionResult DeleteBook(int id)
         {
-            IEnumerable<BookDetails> bookDetails = BookRepository.GetBooks();
-            TempData["books"] = bookDetails;
-            return RedirectToAction("TempDataResult");
-        }
-        public ActionResult TempDataResult()
-        {
-            return View();
+            BookRepository.DeleteBook(id);
+            TempData["Message"] = "Deleted Successfully";
+            return RedirectToAction("Index");
         }
     }
 }
