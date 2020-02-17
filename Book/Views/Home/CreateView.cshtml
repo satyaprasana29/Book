@@ -11,14 +11,14 @@
     <table>
         <tr>
             <td>BookId</td>
-            <td>@Html.EditorFor(model=>model.bookId)</td>
+            <td>@Html.TextBox("bookid")</td>
         </tr>
         <tr>
             <td>
                 BookName
             </td>
             <td>
-                @Html.EditorFor(model=>model.bookName)
+                @Html.TextBox("bookname")
             </td>
         </tr>
         <tr>
@@ -26,7 +26,7 @@
                 AuthorName
             </td>
             <td>
-                @Html.EditorFor(model=>model.authorName)
+                @Html.TextBox("authorNAme")
             </td>
         </tr>
         <tr>

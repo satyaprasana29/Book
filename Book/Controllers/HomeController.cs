@@ -40,8 +40,12 @@ namespace Book.Controllers
             return View("CreateView");
         }
         [HttpPost]
-        public ActionResult Create(BookDetails book)
+        public ActionResult Create(FormCollection formCollection)
         {
+            BookDetails book = new BookDetails();
+            book.bookId = System.Convert.ToInt32(Request.Form["bookid"]);
+            book.bookName = Request.Form["bookname"];
+            book.authorName = Request.Form["authorNAme"];
             BookRepository.books.Add(book);
             TempData["Message"] = "Added Successfully";
             return RedirectToAction("Index");
@@ -52,8 +56,10 @@ namespace Book.Controllers
             return View(bookDetails);
         }
         [HttpPost]
-        public ActionResult UpdateResult(BookDetails book)
+        public ActionResult UpdateResult()
         {
+            BookDetails book = new BookDetails();
+            TryUpdateModel(book);
             BookRepository.UpdateBook(book.bookId, book.bookName, book.authorName);
             TempData["Message"] = "Updated Successfully";
             return RedirectToAction("Index");
