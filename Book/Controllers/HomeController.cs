@@ -40,15 +40,16 @@ namespace Book.Controllers
             return View("CreateView");
         }
         [HttpPost]
-        public ActionResult Create(FormCollection formCollection)
+        [ActionName("Create")]
+        public ActionResult CreateBook([Bind(Include ="authorName,bookName")]BookDetails book)
         {
-            BookDetails book = new BookDetails();
-            book.bookId = System.Convert.ToInt32(Request.Form["bookid"]);
-            book.bookName = Request.Form["bookname"];
-            book.authorName = Request.Form["authorNAme"];
-            BookRepository.books.Add(book);
-            TempData["Message"] = "Added Successfully";
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                BookRepository.AddBook(book);
+                TempData["Message"] = "Added Successfully";
+                return RedirectToAction("Index");
+            }
+            return View();
         }
         public ActionResult EditBook(int id)
         {
@@ -56,13 +57,11 @@ namespace Book.Controllers
             return View(bookDetails);
         }
         [HttpPost]
-        public ActionResult UpdateResult()
+        public ActionResult UpdateResult([Bind(Exclude = "authorName")]BookDetails book)
         {
-            BookDetails book = new BookDetails();
-            TryUpdateModel(book);
-            BookRepository.UpdateBook(book.bookId, book.bookName, book.authorName);
-            TempData["Message"] = "Updated Successfully";
-            return RedirectToAction("Index");
+                BookRepository.UpdateBook(book.bookId, book.bookName, book.authorName);
+                TempData["Message"] = "Updated Successfully";
+                return RedirectToAction("Index");
         }
         public ActionResult DeleteBook(int id)
         {

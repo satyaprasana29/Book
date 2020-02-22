@@ -11,7 +11,8 @@
     <table>
         <tr>
             <td>BookId</td>
-            <td>@Html.TextBox("bookid")</td>
+            <td>@Html.TextBox("bookid")
+            @Html.ValidationMessageFor(model=>model.bookId,"",new { @class = "text-danger" } )</td>
         </tr>
         <tr>
             <td>

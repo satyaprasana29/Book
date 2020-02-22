@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Book.Data;
 namespace Book.Repository
 {
@@ -17,6 +13,10 @@ namespace Book.Repository
         {
             books.Add(new BookDetails("Siddhartha","Hermen Hesse",25));
             books.Add(new BookDetails("Five Point", "Chetan Bhagat", 26));
+        }
+        public static void AddBook(BookDetails book)
+        {
+            books.Add(book);
         }
         public static IEnumerable<BookDetails> GetBooks()
         {
